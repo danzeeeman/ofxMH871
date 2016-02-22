@@ -1,7 +1,8 @@
 ##ofxMH871
 
 This openFrameworks addon drives the MH871-MKII Pen Plotter and Vinyl Cutter. 
-_It is currently a work in progress_
+
+_THIS IS A WORK IN PROGRESS_
 
 ### TO DO LIST Core Addon Features
 - [ ] Setup Device from XML file
