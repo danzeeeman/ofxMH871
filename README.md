@@ -22,5 +22,5 @@ _It is currently a work in progress_
 
 1. Connecting to the device
 2. Settings on the MH871-MKII Control Panel
-3. Setting for a print
+3. Setting everything up for a print
 4. FILE:PRINT
