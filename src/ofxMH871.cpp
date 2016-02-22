@@ -7,16 +7,19 @@
 //
 
 #include "ofxMH871.h"
-void MH871::setup(float min, float max){
-    this->min = min;
-    this->max = max;
-    device.setup("/dev/tty.KeySerial1", 19200);
+void MH871::setup(string serialPort){
+    device.setup(serialPort, 19200);
     initPlotter();
-    penUp();
     timer.setFramerate(30);
 }
 void MH871::update(){
     if(timer.tick()){
+        if(ptsCache.size() > 0){
+            currentPoint = ptsCache.front();
+            ptsCache.pop_front();
+            cout<<currentPoint<<endl;
+        }
+        
         if(cache.size() > 0 && device.isInitialized()){
             sendCommand(cache.front());
             cache.pop_front();
@@ -27,6 +30,18 @@ void MH871::update(){
             }
         }
     }
+}
+
+void MH871::draw(){
+    ofPushMatrix();
+    ofPushStyle();
+    ofNoFill();
+    ofSetColor(255, 255, 0);
+    ofDrawRectangle(0, 0, drawingSize.x, drawingSize.y);
+    ofSetColor(255, 0, 255);
+    ofDrawCircle(currentPoint, 10);
+    ofPopStyle();
+    ofPopMatrix();
 }
 
 void MH871::setPrintSize(float width, float height){
@@ -50,12 +65,14 @@ void MH871::addPoint(ofPoint pt){
     ofVec2f fooP = mapPoint(pt);
     int x = (int)fooP.x;
     int y = (int)fooP.y;
+    ptsCache.push_back(pt);
     cache.push_back("PA"+ofToString(x)+","+ofToString(y)+";");
 }
 void MH871::addPoint(ofVec2f pt){
     ofVec2f fooP = mapPoint(pt);
     int x = (int)fooP.x;
     int y = (int)fooP.y;
+    ptsCache.push_back(pt);
     cache.push_back("PA"+ofToString(x)+","+ofToString(y)+";");
 }
 void MH871::plotPolyline(ofPolyline line){
@@ -83,6 +100,7 @@ void MH871::plotPolylines(vector<ofPolyline> lines){
             }
         }
         addPoint(firstPt);
+        ptsCache.push_back(firstPt);
         cache.push_back("PU;");
     }
     endPlot();
@@ -90,12 +108,16 @@ void MH871::plotPolylines(vector<ofPolyline> lines){
 void MH871::endPlot(){
     cache.push_back("PU;");
     cache.push_back("PA0,0;");
+    ptsCache.push_back(ofVec2f(0, 0));
+    ptsCache.push_back(ofVec2f(0, 0));
     
 }
 void MH871::startPlot(ofPoint pt){
     ofVec2f fooP = mapPoint(pt);
     int x = (int)fooP.x;
     int y = (int)fooP.y;
+    ptsCache.push_back(pt);
+    ptsCache.push_back(pt);
     cache.push_back("PA"+ofToString(x)+","+ofToString(y)+";");
     cache.push_back("PD;");
 }
@@ -103,12 +125,15 @@ void MH871::startPlot(ofVec2f pt){
     ofVec2f fooP = mapPoint(pt);
     int x = (int)fooP.x;
     int y = (int)fooP.y;
+    ptsCache.push_back(pt);
+    ptsCache.push_back(pt);
     cache.push_back("PA"+ofToString(x)+","+ofToString(y)+";");
     cache.push_back("PD;");
 }
 
 void MH871::initPlotter(){
     sendCommand("IN;");
+    endPlot();
 }
 
 void MH871::penDown(){

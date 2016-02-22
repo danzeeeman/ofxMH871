@@ -10,12 +10,13 @@
 #include "ofxTiming.h"
 class MH871{
 public:
-    void setup(float min = 0, float max = 20000);
+    void setup(string serialPort = "/dev/tty.KeySerial1");
     void setPrintSize(ofVec2f size);
     void setPrintSize(float width, float height);
     void setDrawingSize(ofVec2f size);
     void setDrawingSize(float width, float height);
     void update();
+    void draw();
     void plotPolyline(ofPolyline line);
     void plotPolylines(vector<ofPolyline> lines);
 private:
@@ -27,7 +28,7 @@ private:
     void startPlot(ofPoint pt);
     void startPlot(ofVec2f pt);
     void endPlot();
-    ofPolyline polyline;
+    deque<ofVec2f> ptsCache;
     deque<string> cache;
     void sendCommand(string command);
     ofVec2f mapPoint(ofVec2f pt);
@@ -35,6 +36,7 @@ private:
     ofSerial device;
     ofVec2f printSize;
     ofVec2f drawingSize;
+    ofVec2f currentPoint;
     float min, max;
     float maxX, maxY;
     DelayTimer timer;

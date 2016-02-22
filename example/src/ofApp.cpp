@@ -91,9 +91,9 @@ void ofApp::setup(){
     //which we will use to show part of the xml structure
     TTF.load("mono.ttf", 7);
     
-    
+    plotter.setup();
     plotter.setDrawingSize(ofGetWidth(), ofGetHeight());
-    plotter.setPrintSize(20000, 20000*ofGetHeight()/ofGetWidth());
+    plotter.setPrintSize(20000, 20000*(ofGetHeight())/(ofGetWidth()));
 }
 
 //--------------------------------------------------------------
@@ -104,10 +104,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
+    ofBackground(0, 0, 0);
     //---------
     //Lets draw the stroke as a continous line
-    ofSetHexColor(0x222222);
+    ofSetColor(255, 255, 255);
     ofNoFill();
     ofBeginShape();
     for(int i = 0; i < line.getVertices().size(); i++){
@@ -115,39 +115,10 @@ void ofApp::draw(){
     }
     ofEndShape(false);
     
-    ofFill();
-    
-    //--------
-    //we make a black area on the left
-    //which we can print the xml text on
-    ofEnableAlphaBlending();
-    ofSetColor(0, 0, 0, 200);
-    ofDrawRectangle(0, 0, 160, ofGetHeight());
-    ofDisableAlphaBlending();
-    
-    //our text that shows how the <STROKE> data looks in the xml file
     ofSetColor(240, 240, 240);
-    
-    string drawString = "How the data is stored:\n\n";
-    if(xmlStructure.size() > 0) drawString += xmlStructure+"</STROKE>";
-    TTF.drawString(drawString, 5, 40);
-    
-    //the message bars at the top and bottom of the app
-    //ofSetHexColor(0xDDDDDD);
-    ofEnableAlphaBlending();
-    ofSetColor(0, 0, 0, 200);
-    
-    ofDrawRectangle(160, 0, ofGetWidth()-160, 20);
-    ofDrawRectangle(160, ofGetHeight()-20, ofGetWidth()-160, 20);
-    
-    //we draw our status message at the top
-    //ofSetColor(210, 90, 100);
-    ofSetColor(240, 240, 240);
-    TTF.drawString("Save settings to XML hit 's' key  to Plot the drawing press the space bar   status: "+message, 170, 12);
-    
-    //instructions at the bottom
-    TTF.drawString("mouse drag changes background color and records stroke", 168, ofGetHeight() - 9);
-    
+    TTF.drawString("To plot the drawing press the space bar   status: "+message, 170, 12);
+   
+    plotter.draw();
     
 }
 
