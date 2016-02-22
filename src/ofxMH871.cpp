@@ -6,8 +6,7 @@
 //
 //
 
-#include "MH871.h"
-
+#include "ofxMH871.h"
 void MH871::setup(float min, float max){
     this->min = min;
     this->max = max;
@@ -59,7 +58,8 @@ void MH871::addPoint(ofVec2f pt){
     int y = (int)fooP.y;
     cache.push_back("PA"+ofToString(x)+","+ofToString(y)+";");
 }
-void MH871::addPolyline(ofPolyline line){
+void MH871::plotPolyline(ofPolyline line){
+    line = line.getResampledByCount(line.getVertices().size()*2);
     vector<ofPoint> verts = line.getVertices();
     for(float i = 0; i <= 1.0; i+=0.01){
         if(i == 0){
@@ -70,7 +70,7 @@ void MH871::addPolyline(ofPolyline line){
     }
     endPlot();
 }
-void MH871::addPolylines(vector<ofPolyline> lines){
+void MH871::plotPolylines(vector<ofPolyline> lines){
     for(int j = 0; j < lines.size(); j++){
         lines[j] = lines[j].getResampledByCount(lines[j].getVertices().size()*2);
         ofPoint firstPt;

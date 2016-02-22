@@ -16,11 +16,11 @@ public:
     void setDrawingSize(ofVec2f size);
     void setDrawingSize(float width, float height);
     void update();
+    void plotPolyline(ofPolyline line);
+    void plotPolylines(vector<ofPolyline> lines);
+private:
     void addPoint(ofPoint pt);
     void addPoint(ofVec2f pt);
-    void addPolyline(ofPolyline line);
-    void addPolylines(vector<ofPolyline> lines);
-private:
     void penDown();
     void penUp();
     void initPlotter();
