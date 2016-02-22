@@ -2,12 +2,21 @@
 
 This openFrameworks addon drives the MH871-MKII Pen Plotter and Vinyl Cutter. 
 _It is currently a work in progress_
-### TO DO LIST
+
+### TO DO LIST Core Addon Features
 - [ ] Setup Device from XML file
-- [ ] Redo Interpolation for Plotting PolyLines
-- [ ] Plot vector<ofPoints>
-- [ ] Plot vector<ofVec2f>
-- [ ] Plot ofPath
+- [ ] Redo Interpolation for drawing smooth lines _it's a hack!_
+- [ ] Plot vector ofPoint 
+- [ ] Plot vector ofVec2f
+- [ ] Plot ofPath -> ofPolyline
+- [ ] Fix Timing
+- [ ] Expose Realtime Controls 
+
+### TO DO LIST Example
+
+- [ ] RPi Example
+- [ ] RPi Print Server
+- [ ] Realtime Example
 
 ### HOW TO SETUP 
 
