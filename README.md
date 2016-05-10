@@ -26,7 +26,7 @@ This openFrameworks addon drives the MH871-MKII Pen Plotter and Vinyl Cutter.  T
 
 #### Change the Serial BaudRate to 19200
 
-![BaudRate](/iamges/IMG_1625.JGP)
+![BaudRate](/iamges/IMG_1625.JPG)
 
 #### On your Mac or Linux Terminal
 
