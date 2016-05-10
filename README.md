@@ -5,7 +5,7 @@ This openFrameworks addon drives the MH871-MKII Pen Plotter and Vinyl Cutter.  T
   1. Initialize - IN;
   2. Pen Up command - PU
   2. Pen Down command - PD
-  3. Pen Absolute - PAX,Y
+  3. Pen Absolute to an X,Y point - PAX,Y
 
 ## HOW TO SETUP 
 
