@@ -1,6 +1,6 @@
 #ofxMH871
 
-This openFrameworks addon drives the MH871-MKII Pen Plotter and Vinyl Cutter.  The MH871-MKII supports the HPGL (Hewlett-Packard Graphics Language) and uses a limited subset of the HPGL standard: 
+This openFrameworks addon drives the [MH871-MKII Pen Plotter and Vinyl Cutter](http://www.uscutter.com/USCutter-MH-Series-Vinyl-Cutter-w-VinylMaster-Cut-Design-Cut-Software).  The MH871-MKII supports the HPGL (Hewlett-Packard Graphics Language) and uses a limited subset of the HPGL standard: 
 
   1. Initialize - IN;
   2. Pen Up command - PU
@@ -36,3 +36,5 @@ This openFrameworks addon drives the MH871-MKII Pen Plotter and Vinyl Cutter.  T
 
     plotter.setup(string serialPort)
 
+
+Please look in /manuals for the MH871 manual and how to setup the Mk2 on OSX.
