@@ -37,4 +37,4 @@ This openFrameworks addon drives the [MH871-MKII Pen Plotter and Vinyl Cutter](h
     plotter.setup(string serialPort)
 
 
-Please look in /manuals for the MH871 manual and how to setup the Mk2 on OSX.
+Please look in [/manuals](https://github.com/danzeeeman/ofxMH871/tree/master/manuals) for the MH871 manual and how to setup the Mk2 on OSX.
