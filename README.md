@@ -30,9 +30,9 @@ This openFrameworks addon drives the MH871-MKII Pen Plotter and Vinyl Cutter.  T
 
 #### On your Mac or Linux Terminal
 
-'''bash$ ls /dev/tty.*'''
+    bash$ ls /dev/tty.*
 
 ####  Copy the name for your USB to Serial Device for when you setup the ofxMH871 object
 
-'''setup(string serialPort)'''
+    plotter.setup(string serialPort)
 
