@@ -10,6 +10,7 @@
 void MH871::setup(string serialPort){
     device.setup(serialPort, 19200);
     initPlotter();
+    penUp();
     timer.setFramerate(30);
 }
 void MH871::update(){
@@ -17,7 +18,7 @@ void MH871::update(){
         if(ptsCache.size() > 0){
             currentPoint = ptsCache.front();
             ptsCache.pop_front();
-            cout<<currentPoint<<endl;
+//            cout<<currentPoint<<endl;
         }
         
         if(cache.size() > 0 && device.isInitialized()){
@@ -89,14 +90,16 @@ void MH871::plotPolyline(ofPolyline line){
 }
 void MH871::plotPolylines(vector<ofPolyline> lines){
     for(int j = 0; j < lines.size(); j++){
-        lines[j] = lines[j].getResampledByCount(lines[j].getVertices().size()*2);
+        lines[j] = lines[j].getResampledByCount(lines[j].getVertices().size()*10);
+        lines[j] = lines[j].getResampledBySpacing(0.01);
         ofPoint firstPt;
-        for(float i = 0; i <= 1.0; i+=0.005){
+        float length = lines[j].getLengthAtIndex(lines[j].size()-1);
+        for(float i = 0; i <= length; i+=1.0){
             if(i == 0){
-                firstPt = lines[j].getPointAtIndexInterpolated(lines[j].getIndexAtPercent(i));
+                firstPt = lines[j].getPointAtIndexInterpolated(lines[j].getIndexAtPercent(i/length));
                 startPlot(firstPt);
             }else{
-                addPoint(lines[j].getPointAtIndexInterpolated(lines[j].getIndexAtPercent(i)));
+                addPoint(lines[j].getPointAtIndexInterpolated(lines[j].getIndexAtPercent(i/length)));
             }
         }
         addPoint(firstPt);
