@@ -84,22 +84,12 @@ void MH871::plotPolyline(ofPolyline line){
             addPoint(verts[i]);
         }
     }
-    endPlot();
+    cache.push_back("PU;");
 }
 void MH871::plotPolylines(vector<ofPolyline> lines){
     for(int j = 0; j < lines.size(); j++){
-        ofPoint firstPt;
-         vector<ofPoint> verts = lines[j].getVertices();
-        for(float i = 0; i < verts.size(); i++){
-            if(i == 0){
-                startPlot(verts[i]);
-            }else{
-                addPoint(verts[i]);
-            }
-        }
-        cache.push_back("PU;");
+        plotPolyline(lines[j]);
     }
-    endPlot();
 }
 void MH871::endPlot(){
     cache.push_back("PU;");
