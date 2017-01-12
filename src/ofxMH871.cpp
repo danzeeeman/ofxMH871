@@ -11,14 +11,13 @@ void MH871::setup(string serialPort){
     device.setup(serialPort, 19200);
     initPlotter();
     penUp();
-    timer.setFramerate(30);
+    timer.setFramerate(15);
 }
 void MH871::update(){
     if(timer.tick()){
         if(ptsCache.size() > 0){
             currentPoint = ptsCache.front();
             ptsCache.pop_front();
-//            cout<<currentPoint<<endl;
         }
         
         if(cache.size() > 0 && device.isInitialized()){
@@ -77,33 +76,27 @@ void MH871::addPoint(ofVec2f pt){
     cache.push_back("PA"+ofToString(x)+","+ofToString(y)+";");
 }
 void MH871::plotPolyline(ofPolyline line){
-    line = line.getResampledByCount(line.getVertices().size()*2);
     vector<ofPoint> verts = line.getVertices();
-    for(float i = 0; i <= 1.0; i+=0.01){
+    for(float i = 0; i < verts.size(); i++){
         if(i == 0){
-            startPlot(line.getPointAtIndexInterpolated(line.getIndexAtPercent(i)));
+            startPlot(verts[i]);
         }else{
-            addPoint(line.getPointAtIndexInterpolated(line.getIndexAtPercent(i)));
+            addPoint(verts[i]);
         }
     }
     endPlot();
 }
 void MH871::plotPolylines(vector<ofPolyline> lines){
     for(int j = 0; j < lines.size(); j++){
-        lines[j] = lines[j].getResampledByCount(lines[j].getVertices().size()*10);
-        lines[j] = lines[j].getResampledBySpacing(0.01);
         ofPoint firstPt;
-        float length = lines[j].getLengthAtIndex(lines[j].size()-1);
-        for(float i = 0; i <= length; i+=1.0){
+         vector<ofPoint> verts = lines[j].getVertices();
+        for(float i = 0; i < verts.size(); i++){
             if(i == 0){
-                firstPt = lines[j].getPointAtIndexInterpolated(lines[j].getIndexAtPercent(i/length));
-                startPlot(firstPt);
+                startPlot(verts[i]);
             }else{
-                addPoint(lines[j].getPointAtIndexInterpolated(lines[j].getIndexAtPercent(i/length)));
+                addPoint(verts[i]);
             }
         }
-        addPoint(firstPt);
-        ptsCache.push_back(firstPt);
         cache.push_back("PU;");
     }
     endPlot();
@@ -112,14 +105,12 @@ void MH871::endPlot(){
     cache.push_back("PU;");
     cache.push_back("PA0,0;");
     ptsCache.push_back(ofVec2f(0, 0));
-    ptsCache.push_back(ofVec2f(0, 0));
     
 }
 void MH871::startPlot(ofPoint pt){
     ofVec2f fooP = mapPoint(pt);
     int x = (int)fooP.x;
     int y = (int)fooP.y;
-    ptsCache.push_back(pt);
     ptsCache.push_back(pt);
     cache.push_back("PA"+ofToString(x)+","+ofToString(y)+";");
     cache.push_back("PD;");
@@ -128,7 +119,6 @@ void MH871::startPlot(ofVec2f pt){
     ofVec2f fooP = mapPoint(pt);
     int x = (int)fooP.x;
     int y = (int)fooP.y;
-    ptsCache.push_back(pt);
     ptsCache.push_back(pt);
     cache.push_back("PA"+ofToString(x)+","+ofToString(y)+";");
     cache.push_back("PD;");
@@ -159,5 +149,4 @@ void MH871::sendCommand(string command){
     ofBuffer buf;
     buf.set(command);
     device.writeBytes(buf);
-    //    device.flush();
 }

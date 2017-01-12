@@ -91,9 +91,9 @@ void ofApp::setup(){
     //which we will use to show part of the xml structure
     TTF.load("mono.ttf", 7);
     
-    plotter.setup();
+    plotter.setup("/dev/tty.USA19H22P1.1");
     plotter.setDrawingSize(ofGetWidth(), ofGetHeight());
-    plotter.setPrintSize(20000, 20000*(ofGetHeight())/(ofGetWidth()));
+    plotter.setPrintSize(5000, 5000*(ofGetHeight())/(ofGetWidth()));
 }
 
 //--------------------------------------------------------------

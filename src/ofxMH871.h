@@ -40,5 +40,7 @@ private:
     float min, max;
     float maxX, maxY;
     DelayTimer timer;
+    
+    
 };
 

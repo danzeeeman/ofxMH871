@@ -8,7 +8,7 @@
     "2D0CFF599BAA58060E7C94A3DA240C286FDA626D" : 0,
     "2DE9C8846D9375EAACFABA8963120E8E7719BAF5" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ED7E4DDF-F72F-4EE2-B7CE-FE77DF87DD28",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9470817A-6751-406C-8BBE-83836ECEEF45",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "0CFBB459CC981CB7FE95729A4EC4CF1525996BD4" : "ofxMH871\/",
     "2D0CFF599BAA58060E7C94A3DA240C286FDA626D" : "ofxTiming\/",
@@ -19,17 +19,17 @@
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "example\/example.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/danzeeeman\/ofxMH871.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/danzeeeman\/ofxMH871",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0CFBB459CC981CB7FE95729A4EC4CF1525996BD4"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kylemcdonald\/ofxTiming.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/danzeeeman\/ofxTiming",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2D0CFF599BAA58060E7C94A3DA240C286FDA626D"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/openframeworks\/openFrameworks.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/openframeworks\/openFrameworks",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2DE9C8846D9375EAACFABA8963120E8E7719BAF5"
     }
